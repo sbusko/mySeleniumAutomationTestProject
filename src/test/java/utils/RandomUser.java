@@ -7,15 +7,16 @@ public class RandomUser {
     public String lastName;
     public String email;
     Boolean isRegistered = false;
-    String password = "1qaz!QAZ";
+    public String password = "1qaz!QAZ";
     int yearOfBirth;
     int dayOfBirth;
     int monthOfBirth;
-    String postalCode;
-    String state;
-    String address1;
-    String address2;
-    String city;
+    public String postalCode;
+    public String state;
+    public String address1;
+    public String address2;
+    public String city;
+    public String phoneNumber;
 
     public RandomUser() {
         Faker faker = new Faker();
@@ -24,8 +25,12 @@ public class RandomUser {
         this.email = this.firstName + this.lastName + faker.random().nextInt(100000) + "@gmail.com";
         this.dayOfBirth = faker.date().birthday().getDay();
         this.monthOfBirth = faker.date().birthday().getMonth();
-        this.postalCode = faker.address().zipCode();
+        this.postalCode = faker.number().digits(5);
         this.state = faker.address().state();
+        this.address1 = faker.address().streetAddress();
+        this.address2 = faker.address().buildingNumber();
+        this.city = faker.address().city();
+        this.phoneNumber = faker.phoneNumber().cellPhone();
     }
 
     @Override
@@ -44,6 +49,7 @@ public class RandomUser {
                 ", address1='" + address1 + '\'' +
                 ", address2='" + address2 + '\'' +
                 ", city='" + city + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
