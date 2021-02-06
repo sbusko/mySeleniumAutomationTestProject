@@ -63,7 +63,7 @@ public class RegisterPage extends BasePage {
 
             customerFirstName.sendKeys(user.firstName);
             customerLastName.sendKeys(user.lastName);
-            passwd.sendKeys((user.email));
+            passwd.sendKeys(user.password);
             day.selectByValue("" + user.dayOfBirth + "");
             month.selectByValue("" + user.monthOfBirth + "");
             year.selectByValue("" + user.yearOfBirth + "");

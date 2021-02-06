@@ -10,10 +10,13 @@ public class LoginPage extends BasePage {
     WebElement emailCreateNewUserBox;
 
     @FindBy(id = "email")
-    WebElement userEmail;
+    WebElement userRegisteredEmail;
 
     @FindBy(id = "passwd")
-    WebElement userPassword;
+    WebElement userRegisteredPassword;
+
+    @FindBy(id="SubmitLogin")
+    WebElement submitLoginButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -24,9 +27,9 @@ public class LoginPage extends BasePage {
         emailCreateNewUserBox.sendKeys(Keys.ENTER);
     }
 
-    //public void goToMyAccountPage(String email){
-   //userEmail.sendKeys(email);
-    // userPassword.sendKeys(passwd)
-   //     userPassword.sendKeys(Keys.ENTER);
-    //}
+    public void goToMyAccountPage(String email, String password) {
+        userRegisteredEmail.sendKeys(email);
+        userRegisteredPassword.sendKeys(password);
+        submitLoginButton.click();
+    }
 }
