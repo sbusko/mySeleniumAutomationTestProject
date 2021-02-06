@@ -5,21 +5,37 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
 
     protected final static String BASE_URL = "http://automationpractice.com/index.php";
     protected WebDriver driver;
 
-    @FindBy(id="search_query_top")
+    @FindBy(id = "search_query_top")
     WebElement searchBox;
 
-    public BasePage(WebDriver driver){
+    @FindBy(className = "logout")
+    WebElement signOutButton;
+
+    @FindBy(className = "login")
+    WebElement goToLoginPageButton;
+
+    public BasePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void searchForProduct(String productName) {
-        driver.findElement(By.id("search_query_top")).sendKeys(productName);
-        driver.findElement(By.id("search_query_top")).sendKeys(Keys.ENTER);
+        searchBox.sendKeys(productName);
+        searchBox.sendKeys(Keys.ENTER);
+    }
+
+    public void goToLoginPage() {
+        goToLoginPageButton.click();
+    }
+
+    public boolean isUserLoggedIn() {
+        return signOutButton.isDisplayed();
     }
 }

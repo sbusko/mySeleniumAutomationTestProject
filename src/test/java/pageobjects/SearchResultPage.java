@@ -1,20 +1,21 @@
 package pageobjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class SearchResultPage extends BasePage {
 
+    @FindBy(css = ".product_list .product-container")
+    List<WebElement> products;
 
     public SearchResultPage(WebDriver driver) {
         super(driver);
     }
 
-    public int getNumberOfFoundProducts() {
-        List<WebElement> products = driver.findElements(By.cssSelector(".product_list .product-container"));
+    public int getNumberOfFoundedProducts() {
         return products.size();
     }
 }

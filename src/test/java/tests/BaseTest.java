@@ -36,5 +36,4 @@ class BaseTest {
     protected void clearCookies() {
         driver.manage().deleteAllCookies();
     }
-
 }

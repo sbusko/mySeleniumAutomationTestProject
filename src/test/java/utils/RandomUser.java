@@ -8,9 +8,9 @@ public class RandomUser {
     public String email;
     Boolean isRegistered = false;
     public String password = "1qaz!QAZ";
-    int yearOfBirth;
-    int dayOfBirth;
-    int monthOfBirth;
+    public String yearOfBirth;
+    public String dayOfBirth;
+    public String monthOfBirth;
     public String postalCode;
     public String state;
     public String address1;
@@ -23,8 +23,6 @@ public class RandomUser {
         this.firstName = faker.name().firstName();
         this.lastName = faker.name().lastName();
         this.email = this.firstName + this.lastName + faker.random().nextInt(100000) + "@gmail.com";
-        this.dayOfBirth = faker.date().birthday().getDay();
-        this.monthOfBirth = faker.date().birthday().getMonth();
         this.postalCode = faker.number().digits(5);
         this.state = faker.address().state();
         this.address1 = faker.address().streetAddress();
