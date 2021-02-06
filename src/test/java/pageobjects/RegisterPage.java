@@ -32,6 +32,9 @@ public class RegisterPage extends BasePage {
     @FindBy(id = "address1")
     WebElement address1;
 
+    @FindBy(id = "address2")
+    WebElement address2;
+
     @FindBy(id = "city")
     WebElement city;
 
@@ -42,8 +45,8 @@ public class RegisterPage extends BasePage {
     @FindBy(id = "postcode")
     WebElement postcode;
 
-    @FindBy(id = "phoneNumber")
-    WebElement phoneNumber;
+    @FindBy(id = "phone_mobile")
+    WebElement phone_mobile;
 
     @FindBy(id = "submitAccount")
     WebElement submitButton;
@@ -68,9 +71,10 @@ public class RegisterPage extends BasePage {
             month.selectByValue("" + user.monthOfBirth + "");
             year.selectByValue("" + user.yearOfBirth + "");
             address1.sendKeys(user.address1);
+            address2.sendKeys(user.address2);
             city.sendKeys(user.city);
             postcode.sendKeys(user.postalCode);
-            phoneNumber.sendKeys(user.phoneNumber);
+            phone_mobile.sendKeys(" " + user.phone_mobile);
             state.selectByVisibleText(user.state);
             submitButton.click();
         }

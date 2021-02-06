@@ -15,17 +15,11 @@ public class LoginTestPositivePath extends BaseTest {
     void shouldLoginUserWithMandatoryFields() {
         HomePage homePage = new HomePage(driver);
         homePage.openPage();
-        homePage.goToLoginPage();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.goToMyAccountPage("bimpi@wp.pl", "softie");
-        RandomUser randomUser = new RandomUser();
+        LoginPage loginPage = homePage.goToLoginPage();
 
-        MyAccountPage myAccountPage = new MyAccountPage(driver);
+        MyAccountPage myAccountPage = loginPage.goToMyAccountPage("bimpi@wp.pl", "softie");;
 
-        Assertions.assertEquals("MY ACCOUNT", driver.
-                findElement(By.xpath("//div[@id='center_column']/h1")).getText());
-
-
+        Assertions.assertTrue(myAccountPage.isUserLoggedIn());
     }
 }

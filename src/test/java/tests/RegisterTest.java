@@ -14,19 +14,15 @@ public class RegisterTest extends BaseTest {
     void shouldRegisterUserWhenMandatoryFieldsAreFilled() {
         HomePage homePage = new HomePage(driver);
         homePage.openPage();
-        homePage.goToLoginPage();
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = homePage.goToLoginPage();
         RandomUser randomUser = new RandomUser();
         loginPage.goToRegisterPage(randomUser.email);
 
         RegisterPage registerPage = new RegisterPage(driver);
         registerPage.registerUser(randomUser);
-        Assertions.assertTrue(homePage.isUserLoggedIn());
 
-        // jakaś asercja/asercje
-        Assertions.assertEquals("Sign out", driver.findElement(By.className("logout")).getText());
-        Assertions.assertEquals(randomUser.firstName + " " + randomUser.lastName,
-                driver.findElement(By.xpath("//a[@class=\"account\"]/span")).getText());
+        Assertions.assertTrue(homePage.isUserLoggedIn(randomUser.firstName, randomUser.lastName));
+        Assertions.assertTrue(homePage.isUserLoggedIn());
     }
 }

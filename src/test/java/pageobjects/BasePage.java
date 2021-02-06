@@ -1,5 +1,6 @@
 package pageobjects;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,9 @@ public class BasePage {
     @FindBy(className = "login")
     WebElement goToLoginPageButton;
 
+    @FindBy(xpath = "//a[@class=\"account\"]/span")
+    WebElement loggedUserName;
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -31,11 +35,19 @@ public class BasePage {
         searchBox.sendKeys(Keys.ENTER);
     }
 
-    public void goToLoginPage() {
+    public LoginPage goToLoginPage() {
         goToLoginPageButton.click();
+        return new LoginPage(driver);
     }
 
+    public boolean isUserLoggedIn(String firstName, String lastName) {
+        Boolean signOutButtonVisible = signOutButton.isDisplayed();
+        String expectedUserData = firstName + " " + lastName;
+        Boolean userNameCorrectValues = expectedUserData.equals(loggedUserName.getText());
+        return signOutButtonVisible && userNameCorrectValues;
+    }
     public boolean isUserLoggedIn() {
-        return signOutButton.isDisplayed();
+        Boolean signOutButtonVisible = signOutButton.isDisplayed();
+        return signOutButtonVisible;
     }
 }

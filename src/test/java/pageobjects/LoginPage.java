@@ -27,9 +27,10 @@ public class LoginPage extends BasePage {
         emailCreateNewUserBox.sendKeys(Keys.ENTER);
     }
 
-    public void goToMyAccountPage(String email, String password) {
+    public MyAccountPage goToMyAccountPage(String email, String password) {
         userRegisteredEmail.sendKeys(email);
         userRegisteredPassword.sendKeys(password);
         submitLoginButton.click();
+        return new MyAccountPage(driver);
     }
 }
