@@ -18,8 +18,15 @@ public class LoginPage extends BasePage {
     @FindBy(id="SubmitLogin")
     WebElement submitLoginButton;
 
+    @FindBy(css = ".alert >ol")
+    WebElement failAlert;
+
     public LoginPage(WebDriver driver) {
         super(driver);
+    }
+
+    public boolean isAlertDisplayed(String expectedAlertText) {
+        return failAlert.getText().contains(expectedAlertText);
     }
 
     public void goToRegisterPage(String email) {
@@ -27,10 +34,10 @@ public class LoginPage extends BasePage {
         emailCreateNewUserBox.sendKeys(Keys.ENTER);
     }
 
-    public MyAccountPage goToMyAccountPage(String email, String password) {
+    public UserAccountPage goToUserAccountPage(String email, String password) {
         userRegisteredEmail.sendKeys(email);
         userRegisteredPassword.sendKeys(password);
         submitLoginButton.click();
-        return new MyAccountPage(driver);
+        return new UserAccountPage(driver);
     }
 }
