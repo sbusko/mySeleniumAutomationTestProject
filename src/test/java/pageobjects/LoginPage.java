@@ -40,6 +40,7 @@ public class LoginPage extends BasePage {
         submitLoginButton.click();
         return new UserAccountPage(driver);
     }
+
     public boolean isUserNotLoggedIn() {
         Boolean goToLoginPageButtonVisible = goToLoginPageButton.isDisplayed();
         return goToLoginPageButtonVisible;
