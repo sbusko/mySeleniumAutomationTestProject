@@ -22,8 +22,17 @@ public class BasePage {
     @FindBy(className = "login")
     WebElement goToLoginPageButton;
 
-    @FindBy(xpath = "//a[@class=\"account\"]/span")
+    @FindBy(css = "#columns > p")
     WebElement loggedUserName;
+
+    @FindBy(id = "newsletter-input")
+    WebElement newsletterBox;
+
+    @FindBy(name = "submitNewsletter")
+    WebElement submitNewsletterButton;
+
+    @FindBy(css = "#columns > p")
+    WebElement newsletterAlert;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -46,8 +55,18 @@ public class BasePage {
         Boolean userNameCorrectValues = expectedUserData.equals(loggedUserName.getText());
         return signOutButtonVisible && userNameCorrectValues;
     }
-    public boolean isUserLoggedIn() {
+
+    public boolean isUserLoggedIn(){
         Boolean signOutButtonVisible = signOutButton.isDisplayed();
         return signOutButtonVisible;
+    }
+
+    public void subscribeToNewsletter(String email) {
+        newsletterBox.sendKeys(email);
+        submitNewsletterButton.click();
+    }
+
+    public boolean isNewsletterAlertDisplayed(String expectedAlertText) {
+        return newsletterAlert.getText().contains(expectedAlertText);
     }
 }

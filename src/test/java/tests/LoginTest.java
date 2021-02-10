@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pageobjects.BasePage;
 import pageobjects.HomePage;
 import pageobjects.LoginPage;
 import pageobjects.UserAccountPage;
@@ -14,7 +15,7 @@ public class LoginTest extends BaseTest {
         homePage.openPage();
 
         LoginPage loginPage = homePage.goToLoginPage();
-        UserAccountPage userAccountPage = loginPage.goToUserAccountPage("bimpi@wp.pl", "softie");
+        UserAccountPage userAccountPage = loginPage.goToUserAccountPage("automationtest@test.pl", "1qaz!QAZ");
         Assertions.assertTrue(userAccountPage.isUserLoggedIn("John", "Rambo"));
     }
 
@@ -24,8 +25,19 @@ public class LoginTest extends BaseTest {
         homePage.openPage();
 
         LoginPage loginPage = homePage.goToLoginPage();
-        UserAccountPage userAccountPage = loginPage.goToUserAccountPage("bimpi@wp.pl", "");
+        UserAccountPage userAccountPage = loginPage.goToUserAccountPage("automationtest@test.pl", "");
 
         Assertions.assertFalse(loginPage.isAlertDisplayed("password is required"));
+    }
+    @Test
+    void shouldLogoutUser() {
+        HomePage homePage = new HomePage(driver);
+        homePage.openPage();
+
+        LoginPage loginPage = homePage.goToLoginPage();
+        UserAccountPage userAccountPage = loginPage.goToUserAccountPage("automationtest@test.pl", "1qaz!QAZ");
+        userAccountPage.signUserOut();
+
+        Assertions.assertTrue(loginPage.isUserNotLoggedIn());
     }
 }
