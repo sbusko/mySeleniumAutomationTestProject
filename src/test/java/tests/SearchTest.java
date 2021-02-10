@@ -23,8 +23,8 @@ public class SearchTest extends BaseTest {
         homePage.searchForProduct("bike");
         SearchResultPage searchResultPage = new SearchResultPage(driver);
         Assertions.assertEquals(0, searchResultPage.getNumberOfFoundedProducts());
-
     }
+
     @Test
     public void shouldDisplayRightMessageWhenSearchForExistingProduct() {
         HomePage homePage = new HomePage(driver);
