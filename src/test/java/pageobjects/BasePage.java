@@ -1,12 +1,12 @@
 package pageobjects;
 
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class BasePage {
 
@@ -34,6 +34,24 @@ public class BasePage {
     @FindBy(css = "#columns > p")
     WebElement newsletterAlert;
 
+    @FindBy(css = "#block_top_menu > ul > li:nth-child(1) > a")
+    WebElement visibleProductCategoryMenuWomen;
+
+    @FindBy(partialLinkText = "T-shirts")
+    WebElement hiddenProductMenuTshirts;
+
+    @FindBy(partialLinkText = "Blouses")
+    WebElement hiddenProductMenuBlouses;
+
+    @FindBy(partialLinkText = "Casual Dresses")
+    WebElement hiddenProductMenuCasualDresses;
+
+    @FindBy(partialLinkText = "Evening Dresses")
+    WebElement hiddenProductMenuEveningDresses;
+
+    @FindBy(partialLinkText = "Summer Dresses")
+    WebElement hiddenProductMenuSummerDresses;
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -47,6 +65,11 @@ public class BasePage {
     public LoginPage goToLoginPage() {
         goToLoginPageButton.click();
         return new LoginPage(driver);
+    }
+
+    public ProductPage goToShoppingPage() {
+         visibleProductCategoryMenuWomen.click();
+         return new ProductPage(driver);
     }
 
     public boolean isUserLoggedIn(String firstName, String lastName) {

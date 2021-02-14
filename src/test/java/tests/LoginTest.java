@@ -16,6 +16,7 @@ public class LoginTest extends BaseTest {
 
         LoginPage loginPage = homePage.goToLoginPage();
         UserAccountPage userAccountPage = loginPage.goToUserAccountPage("automationtest@test.pl", "1qaz!QAZ");
+
         Assertions.assertTrue(userAccountPage.isUserLoggedIn("John", "Rambo"));
     }
 
@@ -29,6 +30,7 @@ public class LoginTest extends BaseTest {
 
         Assertions.assertFalse(loginPage.isAlertDisplayed("password is required"));
     }
+
     @Test
     void shouldLogoutUser() {
         HomePage homePage = new HomePage(driver);
