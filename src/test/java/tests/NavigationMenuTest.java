@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pageobjects.HomePage;
 
-public class ProductMenuTest extends BaseTest {
+public class NavigationMenuTest extends BaseTest {
 
     @Test
     public void allElementsOfWomenProductMenuVisible1() {

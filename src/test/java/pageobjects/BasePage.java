@@ -6,11 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.List;
-
 public class BasePage {
 
     protected final static String BASE_URL = "http://automationpractice.com/index.php";
+
     protected WebDriver driver;
 
     @FindBy(id = "search_query_top")
@@ -34,7 +33,8 @@ public class BasePage {
     @FindBy(css = "#columns > p")
     WebElement newsletterAlert;
 
-    @FindBy(css = "#block_top_menu > ul > li:nth-child(1) > a")
+    //@FindBy(css = "#block_top_menu > ul > li:nth-child(1) > a")
+    @FindBy(xpath = "//*[@id='block_top_menu']/ul/li[1]/a")
     WebElement visibleProductCategoryMenuWomen;
 
     @FindBy(partialLinkText = "T-shirts")
@@ -52,6 +52,9 @@ public class BasePage {
     @FindBy(partialLinkText = "Summer Dresses")
     WebElement hiddenProductMenuSummerDresses;
 
+    @FindBy(xpath = "//*[@id='header'']/div[3]/div/div/div[3]/div/a/span[1]")
+    WebElement cartQuantity;
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -67,9 +70,9 @@ public class BasePage {
         return new LoginPage(driver);
     }
 
-    public ProductPage goToShoppingPage() {
+    public WomenProductsPage goToProductPage() {
          visibleProductCategoryMenuWomen.click();
-         return new ProductPage(driver);
+         return new WomenProductsPage(driver);
     }
 
     public boolean isUserLoggedIn(String firstName, String lastName) {
@@ -92,4 +95,9 @@ public class BasePage {
     public boolean isNewsletterAlertDisplayed(String expectedAlertText) {
         return newsletterAlert.getText().contains(expectedAlertText);
     }
+
+    public String getCartQuantity(String expectedCartQuantity) {
+        return cartQuantity.getText();
+    }
+
 }
