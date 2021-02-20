@@ -20,7 +20,7 @@ class BaseTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         //wait bezwarunkowy (implicit wait)
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //wait warunkowy (explicit wait)
         wait = new WebDriverWait(driver, 5);
     }

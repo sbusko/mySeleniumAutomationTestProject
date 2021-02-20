@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="TM112020_Final_Project" />
+        <module name="mySeleniumAutomationTestProject" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="TM112020_Final_Project" target="11" />
+      <module name="mySeleniumAutomationTestProject" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

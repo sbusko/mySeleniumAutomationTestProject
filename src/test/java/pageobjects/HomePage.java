@@ -18,22 +18,19 @@ public class HomePage extends BasePage {
 
     public void womenProductMenuDisplay() {
         Actions builder = new Actions(driver);
-        builder.moveToElement(visibleProductCategoryMenuWomen).pause(2000).build().perform();
+        builder.moveToElement(visibleProductCategoryMenuWomen).pause(2000).perform();
     }
 
     public boolean tshirtsProductMenuVisibility() {
-        Boolean hiddenProductMenuVisible = hiddenProductMenuTshirts.isDisplayed();
-        return hiddenProductMenuVisible;
+        return hiddenProductMenuTshirts.isDisplayed();
     }
-
+//checkVisibilityOfMenuItemBlouses
     public boolean blousesProductMenuVisibility() {
-        Boolean hiddenProductMenuVisible = hiddenProductMenuBlouses.isDisplayed();
-        return hiddenProductMenuVisible;
+        return hiddenProductMenuBlouses.isDisplayed();
     }
 
     public boolean casualDressesProductMenuVisibility() {
-        Boolean hiddenProductMenuVisible = hiddenProductMenuCasualDresses.isDisplayed();
-        return hiddenProductMenuVisible;
+        return hiddenProductMenuCasualDresses.isDisplayed();
     }
 
     public boolean allHiddenProductMenuElementsVisible() {
@@ -46,4 +43,5 @@ public class HomePage extends BasePage {
                 && hiddenProductMenuSummerDresses.isDisplayed();
         return hiddenProductMenuVisible;
     }
+
 }

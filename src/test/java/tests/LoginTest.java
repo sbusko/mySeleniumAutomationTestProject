@@ -26,7 +26,7 @@ public class LoginTest extends BaseTest {
         homePage.openPage();
 
         LoginPage loginPage = homePage.goToLoginPage();
-        UserAccountPage userAccountPage = loginPage.goToUserAccountPage("automationtest@test.pl", "");
+        loginPage.goToUserAccountPage("automationtest@test.pl", "");
 
         Assertions.assertFalse(loginPage.isAlertDisplayed("password is required"));
     }

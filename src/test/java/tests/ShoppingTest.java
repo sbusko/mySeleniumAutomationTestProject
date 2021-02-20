@@ -1,8 +1,10 @@
 package tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pageobjects.HomePage;
-import pageobjects.WomenProductsPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import pageobjects.*;
 
 public class ShoppingTest extends BaseTest {
 
@@ -11,6 +13,17 @@ public class ShoppingTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.openPage();
         WomenProductsPage womenProductsPage = homePage.goToProductPage();
+        womenProductsPage.addProductToCart();
+    }
+
+    @Test
+    public void addProductToCart() {
+        HomePage homePage = new HomePage(driver);
+        homePage.openPage();
+        WomenProductsPage womenProductsPage = homePage.goToProductPage();
+        womenProductsPage.addProductToCart();
+        womenProductsPage.clickProceedToCheckoutButton();
+        Assertions.assertEquals("1", homePage.getCartQuantity());
     }
 
     @Test
@@ -18,19 +31,26 @@ public class ShoppingTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.openPage();
         WomenProductsPage womenProductsPage = homePage.goToProductPage();
-        womenProductsPage.productMoreInfo();
-        womenProductsPage.changeProductQuantity();
-        womenProductsPage.selectProductSize();
+        womenProductsPage.clickProductMoreButton();
+        ProductDetailPage productDetailPage = new ProductDetailPage(driver);
+        productDetailPage.selectProductSize();
     }
 
     @Test
-    public void orderProcess2() {
+    public void fullOrderProcessLoggedInUser() {
         HomePage homePage = new HomePage(driver);
         homePage.openPage();
+        LoginPage loginPage = homePage.goToLoginPage();
+        loginPage.goToUserAccountPage("automationtest@test.pl", "1qaz!QAZ");
         WomenProductsPage womenProductsPage = homePage.goToProductPage();
-        womenProductsPage.addProductToCart();
+        womenProductsPage.clickProductMoreButton();
+        ProductDetailPage productDetailPage = new ProductDetailPage(driver);
+        productDetailPage.changeProductQuantity();
+        productDetailPage.selectProductSize();
+        OrderPage orderPage= new OrderPage(driver);
+        womenProductsPage.orderAllTheRest();
 
-        //Assertions.assertEquals("1", homePage.getCartQuantity("1"));
+        Assertions.assertTrue(orderPage.isOrderAlertDisplayed("Your order on My Store is complete."));
     }
 }
 

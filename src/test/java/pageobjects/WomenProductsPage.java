@@ -11,13 +11,13 @@ import java.util.List;
 
 public class WomenProductsPage extends BasePage {
 
-    @FindBy(css = ".ajax_block_product")
     List<WebElement> products;
 
     @FindBy(partialLinkText = "Add to cart")
     List<WebElement> addToCartButtons;
 
     @FindBy(xpath = "//*[@id='center_column']/ul/li[2]/div/div[2]/div[2]/a[1]")
+            //*[@id="center_column"]/ul/li[2]/div/div[2]/div[2]/a[1]/span
     WebElement addBlouseProductToCartButton;
 
     //@FindBy(xpath = "//*[@id=\"center_column\"]/ul/li[1]")
@@ -27,17 +27,11 @@ public class WomenProductsPage extends BasePage {
     @FindBy(xpath = "/html/body[1]/div[1]/div[2]/div[1]/div[3]/div[2]/ul/li[2]/div[1]/div[2]/div[2]/a[2]")
     WebElement blouseProductMoreButton;
 
-    @FindBy(partialLinkText = "Continue shopping")
+    @FindBy(xpath = "//*[@title=\"Continue shopping\"]")
     WebElement continueShoppingButton;
 
-    @FindBy(partialLinkText = "Proceed to checkout")
+    @FindBy(css = "#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > a > span")
     WebElement checkoutButton;
-
-    @FindBy(id = "quantity_wanted")
-    WebElement productQuantity;
-
-    @FindBy(xpath = "//*[@id='group_1']")
-    WebElement productSize;
 
     public WomenProductsPage(WebDriver driver) { super(driver); }
 
@@ -46,31 +40,20 @@ public class WomenProductsPage extends BasePage {
         builder.moveToElement(blouseProduct).moveToElement(addBlouseProductToCartButton).click().perform();
     }
 
-    public void productMoreInfo() {
+    public void clickProductMoreButton() {
         Actions builder = new Actions(driver);
         builder.moveToElement(blouseProduct).moveToElement(blouseProductMoreButton).click().perform();
     }
 
-    public void proceedToOrder() {
+    public void clickProceedToCheckoutButton() {
         checkoutButton.click();
     }
 
-    public void changeProductQuantity() {
-        productQuantity.clear();
-        productQuantity.sendKeys("2");
-    }
-
-    public void selectProductSize() {
-        Select productSizeSelect = new Select(productSize);
-        productSizeSelect.selectByVisibleText("M");
-    }
-
     public void orderAllTheRest() {
+        //Select color
         driver.findElement(By.id("color_11")).click();
-
         //Click on add to cart
         driver.findElement(By.xpath("//p[@id='add_to_cart']//span[.='Add to cart']")).click();
-
         //Click on proceed
         driver.findElement(By.xpath("/html//div[@id='layer_cart']//a[@title='Proceed to checkout']/span")).click();
         //Checkout page Proceed
@@ -79,13 +62,9 @@ public class WomenProductsPage extends BasePage {
         //Agree terms&Conditions
         driver.findElement(By.xpath("//*[@id='cgv']")).click();
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[3]/div/div/form/p/button/span")).click();
-
         //Click on Payby Check
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[3]/div/div/div[3]/div[2]/div/p/a")).click();
         //Confirm the order
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/div/div[3]/div/form/p/button/span")).click();
-
-        //Get Text
-        String ConfirmationText=driver.findElement(By.xpath("//div[@id='center_column']/p[@class='alert alert-success']")).getText();
         }
 }

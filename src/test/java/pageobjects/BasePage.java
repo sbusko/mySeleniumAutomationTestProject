@@ -21,7 +21,7 @@ public class BasePage {
     @FindBy(className = "login")
     WebElement goToLoginPageButton;
 
-    @FindBy(css = "#columns > p")
+    @FindBy(xpath = "//a[@class=\"account\"]/span")
     WebElement loggedUserName;
 
     @FindBy(id = "newsletter-input")
@@ -30,7 +30,7 @@ public class BasePage {
     @FindBy(name = "submitNewsletter")
     WebElement submitNewsletterButton;
 
-    @FindBy(css = "#columns > p")
+    @FindBy(xpath = "#columns > p")
     WebElement newsletterAlert;
 
     //@FindBy(css = "#block_top_menu > ul > li:nth-child(1) > a")
@@ -52,7 +52,8 @@ public class BasePage {
     @FindBy(partialLinkText = "Summer Dresses")
     WebElement hiddenProductMenuSummerDresses;
 
-    @FindBy(xpath = "//*[@id='header'']/div[3]/div/div/div[3]/div/a/span[1]")
+    @FindBy(xpath = "//div[@class='shopping_cart']/a/span[@class='ajax_cart_quantity']")
+            //a[@title="View my shopping cart"]/span[1]
     WebElement cartQuantity;
 
     public BasePage(WebDriver driver) {
@@ -96,8 +97,8 @@ public class BasePage {
         return newsletterAlert.getText().contains(expectedAlertText);
     }
 
-    public String getCartQuantity(String expectedCartQuantity) {
+    public String getCartQuantity() {
+        //System.out.println("test2" + cartQuantity.getAttribute("innerHTML"));
         return cartQuantity.getText();
     }
-
 }
